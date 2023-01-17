@@ -4,7 +4,7 @@ Hey I'm Kyle and I love Tailwind and React. This repo contains a collection of c
 
 # Storybook
 
-https://klstein7.github.io/kyles-react-tailwind-components/
+https://klstein7.github.io/krtc-ui/
 
 # Installation
 
@@ -13,7 +13,7 @@ First, install and setup TailwindCSS in your React project.
 Then install this package:
 
 ```
-yarn add kyles-react-tailwind-components
+yarn add krtc-ui
 ```
 
 In your tailwind.config.cjs, add this package into content:
@@ -21,20 +21,20 @@ In your tailwind.config.cjs, add this package into content:
 ```
 content: [
   "./src/**/*.{js,ts,jsx,tsx}",
-  "./node_modules/kyles-react-tailwind-components/**/*.{js,ts,jsx,tsx}",
+  "./node_modules/krtc-ui/**/*.{js,ts,jsx,tsx}",
 ],
 ```
 
 Usage with Next.js (13.1+), add transpilePackages to your next.config.mjs
 
 ```
-transpilePackages: ["kyles-react-tailwind-components"]
+transpilePackages: ["krtc-ui"]
 ```
 
 Good to go!
 
 ```
-import { Button } from "kyles-react-tailwind-components";
+import { Button } from "krtc-ui";
 
 <Button>Click me</Button>
 ```
@@ -65,8 +65,8 @@ const MyApp: AppType<{ session: Session | null }> = ({
 Opening a modal:
 
 ```
-import type { ModalProps } from "kyles-react-tailwind-components";
-import { Button, Modal } from "kyles-react-tailwind-components";
+import type { ModalProps } from "krtc-ui";
+import { Button, Modal } from "krtc-ui";
 
 <Button onClick={() => {
   NiceModal.show(Modal, {

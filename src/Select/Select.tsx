@@ -8,11 +8,11 @@ import type { FormControlProps } from "../FormControl";
 import { FormControl } from "../FormControl";
 
 export const select = cva(
-  "flex h-10 w-full items-center justify-between rounded ring-1 ring-neutral-600 bg-neutral-700/50 px-3 text-white outline-none gap-3",
+  "flex h-10 w-full items-center justify-between rounded bg-neutral-700/50 px-3 text-white outline-none gap-3 min-w-[250px]",
   {
     variants: {
       variant: {
-        primary: "focus:ring-blue-500",
+        primary: "focus:ring-1 focus:ring-blue-500",
       },
       hasError: {
         true: "!ring-red-500 !text-red-400 focus:!ring-red-500",
@@ -41,6 +41,7 @@ export const Select = ({
   label,
   description,
   error,
+  fullWidth,
   items,
   value: initialValue = "",
   onChange,
@@ -64,6 +65,7 @@ export const Select = ({
         label={label}
         description={description}
         error={error}
+        fullWidth={fullWidth}
       >
         <SelectPrimitive.Trigger id={id} className={select({ hasError })}>
           <SelectPrimitive.Value>

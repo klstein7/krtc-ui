@@ -1,4 +1,4 @@
-import { cva } from "class-variance-authority";
+import { cva, cx } from "class-variance-authority";
 import type { ComponentPropsWithoutRef } from "react";
 import { forwardRef } from "react";
 import { v4 as uuidv4 } from "uuid";
@@ -7,7 +7,7 @@ import type { FormControlProps } from "../FormControl";
 import { FormControl } from "../FormControl";
 
 export const input = cva(
-  "h-10 rounded border-none ring-1 bg-neutral-700/50 ring-neutral-600 text-neutral-200 placeholder:text-neutral-500 w-full",
+  "h-10 rounded border-none ring-1 bg-neutral-700/50 ring-neutral-600 text-neutral-200 placeholder:text-neutral-500 w-full min-w-[250px]",
   {
     variants: {
       variant: {
@@ -45,6 +45,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       rightIcon,
       id = uuidv4(),
       type = "text",
+      fullWidth,
       ...props
     },
     ref
@@ -55,9 +56,10 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         id={id}
         label={label}
         description={description}
+        fullWidth={fullWidth}
         error={error}
       >
-        <div className="relative">
+        <div className={cx("relative")}>
           {leftIcon && (
             <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-neutral-200">
               {leftIcon}

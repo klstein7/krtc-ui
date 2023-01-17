@@ -1,10 +1,12 @@
 import * as LabelPrimitive from "@radix-ui/react-label";
+import { cx } from "class-variance-authority";
 
 export type FormControlProps = {
   id: string;
   label?: string;
   description?: string;
   error?: string;
+  fullWidth?: boolean;
   children: React.ReactNode;
 };
 
@@ -13,11 +15,12 @@ export const FormControl = ({
   label,
   description,
   error,
+  fullWidth,
   children,
 }: FormControlProps) => {
   const hasError = !!error;
   return (
-    <div className="space-y-1">
+    <div className={cx("flex flex-col gap-1", fullWidth ? "w-full" : "w-fit")}>
       <div>
         {label && (
           <LabelPrimitive.Root
