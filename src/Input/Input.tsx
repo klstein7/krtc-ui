@@ -45,7 +45,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       rightIcon,
       id = uuidv4(),
       type = "text",
-      fullWidth = true,
+      fullWidth,
       ...props
     },
     ref
