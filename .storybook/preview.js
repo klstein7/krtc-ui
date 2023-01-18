@@ -21,11 +21,3 @@ export const parameters = {
     },
   },
 };
-
-export const decorators = [
-  (Story) => (
-    <NiceModal.Provider>
-      <Story />
-    </NiceModal.Provider>
-  ),
-];

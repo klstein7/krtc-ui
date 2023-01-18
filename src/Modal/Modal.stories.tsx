@@ -36,12 +36,14 @@ export const Default: Story = {
     size: "md",
   },
   render: (args) => (
-    <Button
-      onClick={() => {
-        NiceModal.show(Modal, args).catch(console.error);
-      }}
-    >
-      Open
-    </Button>
+    <NiceModal.Provider>
+      <Button
+        onClick={() => {
+          NiceModal.show(Modal, args).catch(console.error);
+        }}
+      >
+        Open
+      </Button>
+    </NiceModal.Provider>
   ),
 };

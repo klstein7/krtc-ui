@@ -24,13 +24,13 @@ export const Default: Story = {
 export const WithLeftIcon: Story = {
   args: {
     children: "Click me",
-    leftIcon: <HiHome className="h-5 w-5" />,
+    leftIcon: <HiHome className="h-4 w-4" />,
   },
 };
 
 export const WithRightIcon: Story = {
   args: {
     children: "Click me",
-    rightIcon: <HiArrowRight className="h-5 w-5" />,
+    rightIcon: <HiArrowRight className="h-4 w-4" />,
   },
 };

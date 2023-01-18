@@ -41,7 +41,7 @@ export const Navbar = ({ brandIcon, brandText, items = [] }: NavbarProps) => {
       </div>
       <div className="sm:hidden">
         <Menu side="bottom" align="end" items={items}>
-          <IconButton icon={<HiBars3 className="h-5 w-5" />} />
+          <IconButton icon={<HiBars3 className="h-4 w-4" />} />
         </Menu>
       </div>
     </div>

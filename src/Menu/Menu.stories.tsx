@@ -26,6 +26,6 @@ export const Default: Story = {
         onClick: () => console.log("Item 2 clicked"),
       },
     ],
-    children: <IconButton icon={<HiBars3 className="h-5 w-5" />} />,
+    children: <IconButton icon={<HiBars3 className="h-4 w-4" />} />,
   },
 };

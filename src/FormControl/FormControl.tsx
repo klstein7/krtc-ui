@@ -21,11 +21,11 @@ export const FormControl = ({
   const hasError = !!error;
   return (
     <div className={cx("flex flex-col gap-1", fullWidth ? "w-full" : "w-fit")}>
-      <div>
+      <div className="flex flex-col">
         {label && (
           <LabelPrimitive.Root
             htmlFor={id}
-            className="block text-sm text-neutral-200"
+            className="w-fit text-sm text-neutral-200"
           >
             {label}
           </LabelPrimitive.Root>
@@ -33,7 +33,7 @@ export const FormControl = ({
         {description && (
           <LabelPrimitive.Root
             htmlFor={id}
-            className="block text-xs text-neutral-400"
+            className="w-fit text-xs text-neutral-400"
           >
             {description}
           </LabelPrimitive.Root>
@@ -43,7 +43,7 @@ export const FormControl = ({
       {hasError && (
         <LabelPrimitive.Root
           htmlFor={id}
-          className="block text-xs text-red-400"
+          className="w-fit text-xs text-red-400"
         >
           {error}
         </LabelPrimitive.Root>

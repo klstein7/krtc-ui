@@ -12,7 +12,16 @@ export type TextareaProps = VariantProps<typeof input> &
 
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
   (
-    { id = uuidv4(), label, description, error, variant, rows = 2, ...props },
+    {
+      id = uuidv4(),
+      label,
+      description,
+      error,
+      variant,
+      rows = 2,
+      fullWidth = true,
+      ...props
+    },
     ref
   ) => {
     const hasError = !!error;
@@ -21,6 +30,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         id={id}
         label={label}
         description={description}
+        fullWidth={fullWidth}
         error={error}
       >
         <textarea

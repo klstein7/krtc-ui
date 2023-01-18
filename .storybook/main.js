@@ -4,7 +4,6 @@ module.exports = {
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-interactions",
-    "@storybook/addon-docs",
     {
       name: "@storybook/addon-essentials",
       options: {

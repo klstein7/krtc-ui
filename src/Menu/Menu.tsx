@@ -37,7 +37,7 @@ export const Menu = ({
             {items.map(({ label, icon, onClick }, index) => (
               <DropdownMenu.Item
                 key={`menu-item-${label}-${index}`}
-                className="flex cursor-pointer select-none items-center gap-2 rounded py-1 px-3 outline-none hover:bg-white/5"
+                className="flex cursor-pointer select-none items-center gap-2 rounded py-1 px-2 outline-none hover:bg-white/5"
                 onClick={onClick}
               >
                 {icon}

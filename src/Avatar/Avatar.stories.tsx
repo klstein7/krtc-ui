@@ -14,4 +14,15 @@ export const Default: Avatar = {
     src: "https://i.pravatar.cc/300",
     alt: "Avatar",
   },
+  render: (args) => <Avatar {...args} />,
+};
+
+export const Group: Avatar = {
+  render: () => (
+    <Avatar.Group>
+      <Avatar src="https://i.pravatar.cc/300?img=1" alt="Avatar" />
+      <Avatar src="https://i.pravatar.cc/300?img=2" alt="Avatar" />
+      <Avatar src="https://i.pravatar.cc/300?img=3" alt="Avatar" />
+    </Avatar.Group>
+  ),
 };

@@ -7,11 +7,11 @@ import type { FormControlProps } from "../FormControl";
 import { FormControl } from "../FormControl";
 
 export const input = cva(
-  "h-10 rounded border-none ring-1 bg-neutral-700/50 ring-neutral-600 text-neutral-200 placeholder:text-neutral-500 w-full min-w-[250px]",
+  "h-10 rounded border-none bg-white/5 text-neutral-200 placeholder:text-neutral-500 w-full min-w-[250px] text-sm",
   {
     variants: {
       variant: {
-        primary: "focus:ring-blue-500",
+        primary: "focus:ring-1 focus:ring-blue-500",
       },
       hasLeftIcon: {
         true: "pl-10",
@@ -20,7 +20,7 @@ export const input = cva(
         true: "pr-10",
       },
       hasError: {
-        true: "!ring-red-500 !text-red-400 focus:!ring-red-500",
+        true: "!ring-1 !ring-red-500 !text-red-400 focus:!ring-red-500",
       },
     },
     defaultVariants: {
@@ -45,7 +45,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       rightIcon,
       id = uuidv4(),
       type = "text",
-      fullWidth,
+      fullWidth = true,
       ...props
     },
     ref
@@ -68,7 +68,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           {(rightIcon || hasError) && (
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 text-neutral-300">
               {hasError ? (
-                <HiExclamationCircle className="h-5 w-5 text-red-500" />
+                <HiExclamationCircle className="h-4 w-4 text-red-500" />
               ) : (
                 rightIcon
               )}

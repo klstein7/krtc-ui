@@ -12,6 +12,6 @@ type Story = StoryObj<typeof IconButton>;
 
 export const Default: Story = {
   args: {
-    icon: <HiXMark className="h-5 w-5" />,
+    icon: <HiXMark className="h-4 w-4" />,
   },
 };

@@ -8,7 +8,7 @@ import type { FormControlProps } from "../FormControl";
 import { FormControl } from "../FormControl";
 
 export const select = cva(
-  "flex h-10 w-full items-center justify-between rounded bg-neutral-700/50 px-3 text-white outline-none gap-3 min-w-[250px]",
+  "flex h-10 w-full items-center justify-between rounded bg-white/5 px-3 text-white outline-none min-w-[250px] text-sm",
   {
     variants: {
       variant: {
@@ -41,7 +41,7 @@ export const Select = ({
   label,
   description,
   error,
-  fullWidth,
+  fullWidth = true,
   items,
   value: initialValue = "",
   onChange,
@@ -78,7 +78,7 @@ export const Select = ({
                   : "text-neutral-500"
               )}
             >
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2">
                 {selectedItem?.icon}
                 <span>{selectedItem?.label ?? "Select..."}</span>
               </div>
@@ -86,9 +86,9 @@ export const Select = ({
           </SelectPrimitive.Value>
           <SelectPrimitive.Icon>
             {hasError ? (
-              <HiExclamationCircle className="h-5 w-5 text-red-500" />
+              <HiExclamationCircle className="h-4 w-4 text-red-500" />
             ) : (
-              <HiChevronUpDown className="h-5 w-5 text-neutral-200" />
+              <HiChevronUpDown className="h-4 w-4 text-neutral-200" />
             )}
           </SelectPrimitive.Icon>
         </SelectPrimitive.Trigger>
@@ -99,17 +99,17 @@ export const Select = ({
             {items.map((item, index) => (
               <SelectPrimitive.Item
                 key={`select-item-${item.value}-${index}`}
-                className="flex h-10 items-center justify-between rounded px-3 outline-none hover:bg-white/5"
+                className="flex h-10 items-center justify-between rounded px-2 text-sm outline-none hover:bg-white/5"
                 value={item.value}
               >
                 <SelectPrimitive.ItemText>
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-2">
                     {item.icon}
                     <span>{item.label}</span>
                   </div>
                 </SelectPrimitive.ItemText>
                 <SelectPrimitive.ItemIndicator>
-                  <MdCheck className="h-5 w-5" />
+                  <MdCheck className="h-4 w-4" />
                 </SelectPrimitive.ItemIndicator>
               </SelectPrimitive.Item>
             ))}
