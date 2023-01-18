@@ -41,7 +41,7 @@ export const Select = ({
   label,
   description,
   error,
-  fullWidth,
+  fullWidth = true,
   items,
   value: initialValue = "",
   onChange,

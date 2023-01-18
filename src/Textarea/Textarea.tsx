@@ -19,7 +19,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       error,
       variant,
       rows = 2,
-      fullWidth,
+      fullWidth = true,
       ...props
     },
     ref
