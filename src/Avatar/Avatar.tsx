@@ -5,7 +5,7 @@ import type { ComponentPropsWithoutRef } from "react";
 import { forwardRef } from "react";
 
 const avatar = cva(
-  "flex items-center justify-center text-blue-100 bg-blue-700 font-medium object-cover select-none ring-4 ring-neutral-800",
+  "flex items-center justify-center text-blue-100 bg-blue-700 font-medium object-cover select-none",
   {
     variants: {
       size: {
