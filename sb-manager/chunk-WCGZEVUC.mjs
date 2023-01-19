@@ -204,4 +204,4 @@ You may have forgotten to import it.`);var isReal=tag.__emotion_real===tag,baseT
           Your theme is missing properties, you should update your theme!
 
           theme-data missing:
-        `,missing),convert(input)},ignoreSsrWarning="/* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */";export{scope,logger,once,pretty,dist_exports,lightenColor,create,emotion_is_prop_valid_esm_default,emotion_cache_browser_esm_default,CacheProvider,useTheme,ThemeProvider,withTheme,Global,keyframes,emotion_styled_browser_esm_default,createGlobal,ensure,dist_exports2};
+        `,missing),convert(input)},ignoreSsrWarning="/* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */";export{scope,logger,once,deprecate,pretty,dist_exports,lightenColor,create,emotion_is_prop_valid_esm_default,emotion_cache_browser_esm_default,CacheProvider,useTheme,ThemeProvider,withTheme,Global,keyframes,emotion_styled_browser_esm_default,createGlobal,ensure,dist_exports2};
