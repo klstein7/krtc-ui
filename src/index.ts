@@ -1,6 +1,7 @@
 export * from "./Avatar";
 export * from "./Button";
 export * from "./ContextMenu";
+export * from "./Editor";
 export * from "./IconButton";
 export * from "./Input";
 export * from "./Menu";
