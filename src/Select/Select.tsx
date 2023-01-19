@@ -15,7 +15,7 @@ export const select = cva(
         primary: "focus:ring-1 focus:ring-blue-500",
       },
       hasError: {
-        true: "!ring-red-500 !text-red-400 focus:!ring-red-500",
+        true: "!ring-1 !ring-red-500 !text-red-400 focus:!ring-red-500",
       },
     },
     defaultVariants: {

@@ -9,5 +9,9 @@ export default {
 type Story = StoryObj<typeof Editor>;
 
 export const Default: Story = {
-  args: {},
+  args: {
+    label: "Editor",
+    description: "This is a description",
+    error: "",
+  },
 };

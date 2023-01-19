@@ -4,14 +4,19 @@ import type { FormControlProps } from "../FormControl";
 import { FormControl } from "../FormControl";
 import { v4 as uuidv4 } from "uuid";
 import clsx from "clsx";
-import { useState } from "react";
+import { forwardRef, useState } from "react";
 import { IconButton } from "../IconButton";
 import {
+  MdCode,
   MdFormatBold,
   MdFormatItalic,
   MdFormatListBulleted,
+  MdFormatListNumbered,
+  MdFormatQuote,
+  MdFormatStrikethrough,
   MdFormatUnderlined,
 } from "react-icons/md";
+import {} from "react-icons/fa";
 import Underline from "@tiptap/extension-underline";
 
 export type EditorProps = {
@@ -41,7 +46,7 @@ export const Editor = ({
     editorProps: {
       attributes: {
         class: clsx([
-          "prose prose-invert bg-white/5 rounded-b px-3 py-2 text-sm outline-none min-h-[150px] max-w-full",
+          "prose prose-invert p-3 text-sm outline-none min-h-[150px] max-w-full leading-none",
         ]),
       },
     },
@@ -59,42 +64,50 @@ export const Editor = ({
       error={error}
       fullWidth={fullWidth}
     >
-      <div>
+      <div className="rounded bg-white/5">
         <div className="flex items-center gap-2">
-          <div className="flex">
-            <IconButton
-              className={clsx([
-                "rounded-none rounded-tl",
-                editor?.isActive("bold") && "bg-white/10",
-              ])}
+          <div className="flex gap-1 p-1">
+            <EditorActionButton
               icon={<MdFormatBold className="h-4 w-4" />}
+              active={editor?.isActive("bold")}
               onClick={() => editor?.chain().focus().toggleBold().run()}
             />
-            <IconButton
-              className={clsx([
-                "rounded-none",
-                editor?.isActive("italic") && "bg-white/10",
-              ])}
+            <EditorActionButton
               icon={<MdFormatItalic className="h-4 w-4" />}
+              active={editor?.isActive("italic")}
               onClick={() => editor?.chain().focus().toggleItalic().run()}
             />
-            <IconButton
-              className={clsx([
-                "rounded-none rounded-tr",
-                editor?.isActive("underline") && "bg-white/10",
-              ])}
+            <EditorActionButton
               icon={<MdFormatUnderlined className="h-4 w-4" />}
+              active={editor?.isActive("underline")}
               onClick={() => editor?.chain().focus().toggleUnderline().run()}
             />
+            <EditorActionButton
+              icon={<MdFormatStrikethrough className="h-4 w-4" />}
+              active={editor?.isActive("strike")}
+              onClick={() => editor?.chain().focus().toggleStrike().run()}
+            />
+            <EditorActionButton
+              icon={<MdFormatQuote className="h-4 w-4" />}
+              active={editor?.isActive("blockquote")}
+              onClick={() => editor?.chain().focus().toggleBlockquote().run()}
+            />
+            <EditorActionButton
+              icon={<MdCode className="h-4 w-4" />}
+              active={editor?.isActive("codeBlock")}
+              onClick={() => editor?.chain().focus().toggleCodeBlock().run()}
+            />
           </div>
-          <div className="flex">
-            <IconButton
-              className={clsx([
-                "rounded-none rounded-tl",
-                editor?.isActive("bulletList") && "bg-white/10",
-              ])}
+          <div className="flex gap-1 p-1">
+            <EditorActionButton
               icon={<MdFormatListBulleted className="h-4 w-4" />}
+              active={editor?.isActive("bulletList")}
               onClick={() => editor?.chain().focus().toggleBulletList().run()}
+            />
+            <EditorActionButton
+              icon={<MdFormatListNumbered className="h-4 w-4" />}
+              active={editor?.isActive("orderedList")}
+              onClick={() => editor?.chain().focus().toggleOrderedList().run()}
             />
           </div>
         </div>
@@ -103,10 +116,32 @@ export const Editor = ({
           className={clsx([
             "rounded-b",
             isFocused && "ring-1 ring-blue-500",
-            hasError && "!text-red-400 !ring-1 !ring-red-500",
+            hasError && "!ring-1 !ring-red-500",
           ])}
         />
       </div>
     </FormControl>
   );
 };
+
+type EditorActionButtonProps = {
+  icon: React.ReactNode;
+  active?: boolean;
+  onClick?: () => void;
+};
+
+const EditorActionButton = forwardRef<
+  HTMLButtonElement,
+  EditorActionButtonProps
+>(({ icon: Icon, active, onClick }, ref) => {
+  return (
+    <IconButton
+      ref={ref}
+      className={clsx(["rounded", active && "bg-white/5"])}
+      icon={Icon}
+      onClick={onClick}
+    />
+  );
+});
+
+EditorActionButton.displayName = "EditorActionButton";
