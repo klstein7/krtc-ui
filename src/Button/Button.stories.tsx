@@ -11,25 +11,22 @@ export default {
 type Story = StoryObj<typeof Button>;
 
 export const Default: Story = {
-  args: {
-    children: "Click me",
-  },
-  render: ({ children, ...args }) => (
+  render: (args) => (
     <div className="flex flex-col gap-4">
       <Button {...args} color="blue">
-        {children}
+        Blue
       </Button>
       <Button {...args} color="red">
-        {children}
+        Red
       </Button>
       <Button {...args} color="green">
-        {children}
+        Green
       </Button>
       <Button {...args} color="yellow">
-        {children}
+        Yellow
       </Button>
       <Button {...args} color="neutral">
-        {children}
+        Neutral
       </Button>
     </div>
   ),
@@ -40,22 +37,22 @@ export const Outline: Story = {
     children: "Click me",
     variant: "outline",
   },
-  render: ({ children, ...args }) => (
+  render: (args) => (
     <div className="flex flex-col gap-4">
       <Button {...args} color="blue">
-        {children}
+        Blue
       </Button>
       <Button {...args} color="red">
-        {children}
+        Red
       </Button>
       <Button {...args} color="green">
-        {children}
+        Green
       </Button>
       <Button {...args} color="yellow">
-        {children}
+        Yellow
       </Button>
       <Button {...args} color="neutral">
-        {children}
+        Neutral
       </Button>
     </div>
   ),
@@ -66,22 +63,22 @@ export const Ghost: Story = {
     children: "Click me",
     variant: "ghost",
   },
-  render: ({ children, ...args }) => (
+  render: (args) => (
     <div className="flex flex-col gap-4">
       <Button {...args} color="blue">
-        {children}
+        Blue
       </Button>
       <Button {...args} color="red">
-        {children}
+        Red
       </Button>
       <Button {...args} color="green">
-        {children}
+        Green
       </Button>
       <Button {...args} color="yellow">
-        {children}
+        Yellow
       </Button>
       <Button {...args} color="neutral">
-        {children}
+        Neutral
       </Button>
     </div>
   ),
@@ -92,22 +89,22 @@ export const WithLeftIcon: Story = {
     children: "Click me",
     leftIcon: <HiHome className="h-4 w-4" />,
   },
-  render: ({ children, ...args }) => (
+  render: (args) => (
     <div className="flex flex-col gap-4">
       <Button {...args} color="blue">
-        {children}
+        Blue
       </Button>
       <Button {...args} color="red">
-        {children}
+        Red
       </Button>
       <Button {...args} color="green">
-        {children}
+        Green
       </Button>
       <Button {...args} color="yellow">
-        {children}
+        Yellow
       </Button>
       <Button {...args} color="neutral">
-        {children}
+        Neutral
       </Button>
     </div>
   ),
@@ -118,22 +115,22 @@ export const WithRightIcon: Story = {
     children: "Click me",
     rightIcon: <HiArrowRight className="h-4 w-4" />,
   },
-  render: ({ children, ...args }) => (
+  render: (args) => (
     <div className="flex flex-col gap-4">
       <Button {...args} color="blue">
-        {children}
+        Blue
       </Button>
       <Button {...args} color="red">
-        {children}
+        Red
       </Button>
       <Button {...args} color="green">
-        {children}
+        Green
       </Button>
       <Button {...args} color="yellow">
-        {children}
+        Yellow
       </Button>
       <Button {...args} color="neutral">
-        {children}
+        Neutral
       </Button>
     </div>
   ),
@@ -144,22 +141,22 @@ export const Disabled: Story = {
     children: "Click me",
     disabled: true,
   },
-  render: ({ children, ...args }) => (
+  render: (args) => (
     <div className="flex flex-col gap-4">
       <Button {...args} color="blue">
-        {children}
+        Blue
       </Button>
       <Button {...args} color="red">
-        {children}
+        Red
       </Button>
       <Button {...args} color="green">
-        {children}
+        Green
       </Button>
       <Button {...args} color="yellow">
-        {children}
+        Yellow
       </Button>
       <Button {...args} color="neutral">
-        {children}
+        Neutral
       </Button>
     </div>
   ),
@@ -170,22 +167,22 @@ export const Loading: Story = {
     children: "Click me",
     loading: true,
   },
-  render: ({ children, ...args }) => (
+  render: (args) => (
     <div className="flex flex-col gap-4">
       <Button {...args} color="blue">
-        {children}
+        Blue
       </Button>
       <Button {...args} color="red">
-        {children}
+        Red
       </Button>
       <Button {...args} color="green">
-        {children}
+        Green
       </Button>
       <Button {...args} color="yellow">
-        {children}
+        Yellow
       </Button>
       <Button {...args} color="neutral">
-        {children}
+        Neutral
       </Button>
     </div>
   ),
