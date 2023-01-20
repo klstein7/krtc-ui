@@ -2,6 +2,8 @@
 
 Hey I'm Kyle and I love Tailwind and React. This repo contains a collection of components I made and use in some of my projects.
 
+Currently the default and only theme is a dark theme. I'll be adding a light theme soon.
+
 # Storybook
 
 https://klstein7.github.io/krtc-ui/
@@ -10,13 +12,13 @@ https://klstein7.github.io/krtc-ui/
 
 First, install and setup TailwindCSS in your React project.
 
-Then install this package:
+Then install this package
 
 ```
 yarn add krtc-ui
 ```
 
-In your tailwind.config.cjs, add this package into content:
+In your tailwind.config.cjs, add this package into content
 
 ```
 content: [
@@ -25,10 +27,19 @@ content: [
 ],
 ```
 
-Usage with Next.js (13.1+), add transpilePackages to your next.config.mjs
+Install @tailwindcss/forms and @tailwindcss/typography
 
 ```
-transpilePackages: ["krtc-ui"]
+yarn add @tailwindcss/forms @tailwindcss/typography
+```
+
+Add them to your tailwind.config.cjs
+
+```
+plugins: [
+  require("@tailwindcss/forms"),
+  require("@tailwindcss/typography"),
+],
 ```
 
 Good to go!
@@ -37,6 +48,14 @@ Good to go!
 import { Button } from "krtc-ui";
 
 <Button>Click me</Button>
+```
+
+# Next.js (13.1+)
+
+Add transpilePackages to your next.config.mjs
+
+```
+transpilePackages: ["krtc-ui"]
 ```
 
 # Modals
