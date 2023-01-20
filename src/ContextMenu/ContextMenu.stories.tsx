@@ -53,8 +53,8 @@ export const WithCustomClassNames: Story = {
       },
     ],
     classNames: {
-      content: "bg-red-900 min-w-[200px]",
-      item: "hover:bg-red-800",
+      content: "!bg-red-900 !min-w-[200px]",
+      item: "hover:!bg-red-800",
     },
   },
 };

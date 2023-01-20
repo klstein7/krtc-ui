@@ -178,7 +178,13 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             {leftIcon}
             {children}
             {rightIcon}
-            {loading && <ClipLoader size={20} color="currentColor" />}
+            {loading && (
+              <ClipLoader
+                size={17}
+                color="currentColor"
+                speedMultiplier={0.75}
+              />
+            )}
           </>
         </motion.button>
       </Ripples>

@@ -3,7 +3,7 @@ import { cva, cx } from "class-variance-authority";
 import { HiChevronUpDown, HiExclamationCircle } from "react-icons/hi2";
 import { MdCheck } from "react-icons/md";
 import { v4 as uuidv4 } from "uuid";
-import { useState } from "react";
+import { forwardRef, useState } from "react";
 import type { FormControlProps } from "../FormControl";
 import { FormControl } from "../FormControl";
 
@@ -36,86 +36,97 @@ export type SelectProps = {
   onChange?: (value: string) => void;
 } & Partial<FormControlProps>;
 
-export const Select = ({
-  id = uuidv4(),
-  label,
-  description,
-  error,
-  fullWidth = true,
-  items,
-  value: initialValue = "",
-  onChange,
-}: SelectProps) => {
-  const hasError = !!error;
+export const Select = forwardRef<HTMLButtonElement, SelectProps>(
+  (
+    {
+      id = uuidv4(),
+      label,
+      description,
+      error,
+      fullWidth = true,
+      items,
+      value: initialValue = "",
+      onChange,
+    },
+    ref
+  ) => {
+    const hasError = !!error;
 
-  const [value, setValue] = useState(initialValue);
+    const [value, setValue] = useState(initialValue);
 
-  const selectedItem = items.find((item) => item.value === value);
+    const selectedItem = items.find((item) => item.value === value);
 
-  return (
-    <SelectPrimitive.Root
-      value={value}
-      onValueChange={(v) => {
-        setValue(v);
-        onChange?.(v);
-      }}
-    >
-      <FormControl
-        id={id}
-        label={label}
-        description={description}
-        error={error}
-        fullWidth={fullWidth}
+    return (
+      <SelectPrimitive.Root
+        value={value}
+        onValueChange={(v) => {
+          setValue(v);
+          onChange?.(v);
+        }}
       >
-        <SelectPrimitive.Trigger id={id} className={select({ hasError })}>
-          <SelectPrimitive.Value>
-            <span
-              className={cx(
-                selectedItem
-                  ? hasError
-                    ? "text-red-400"
-                    : "text-neutral-200"
-                  : "text-neutral-500"
-              )}
-            >
-              <div className="flex items-center gap-2">
-                {selectedItem?.icon}
-                <span>{selectedItem?.label ?? "Select..."}</span>
-              </div>
-            </span>
-          </SelectPrimitive.Value>
-          <SelectPrimitive.Icon>
-            {hasError ? (
-              <HiExclamationCircle className="h-4 w-4 text-red-500" />
-            ) : (
-              <HiChevronUpDown className="h-4 w-4 text-neutral-200" />
-            )}
-          </SelectPrimitive.Icon>
-        </SelectPrimitive.Trigger>
-      </FormControl>
-      <SelectPrimitive.Portal>
-        <SelectPrimitive.Content className="z-30">
-          <SelectPrimitive.Viewport className="flex select-none flex-col gap-1 rounded bg-neutral-900 p-1 text-neutral-200">
-            {items.map((item, index) => (
-              <SelectPrimitive.Item
-                key={`select-item-${item.value}-${index}`}
-                className="flex h-10 items-center justify-between rounded px-2 text-sm outline-none hover:bg-white/5"
-                value={item.value}
+        <FormControl
+          id={id}
+          label={label}
+          description={description}
+          error={error}
+          fullWidth={fullWidth}
+        >
+          <SelectPrimitive.Trigger
+            ref={ref}
+            id={id}
+            className={select({ hasError })}
+          >
+            <SelectPrimitive.Value asChild>
+              <span
+                className={cx(
+                  selectedItem
+                    ? hasError
+                      ? "text-red-400"
+                      : "text-neutral-200"
+                    : "text-neutral-500"
+                )}
               >
-                <SelectPrimitive.ItemText>
-                  <div className="flex items-center gap-2">
-                    {item.icon}
-                    <span>{item.label}</span>
-                  </div>
-                </SelectPrimitive.ItemText>
-                <SelectPrimitive.ItemIndicator>
-                  <MdCheck className="h-4 w-4" />
-                </SelectPrimitive.ItemIndicator>
-              </SelectPrimitive.Item>
-            ))}
-          </SelectPrimitive.Viewport>
-        </SelectPrimitive.Content>
-      </SelectPrimitive.Portal>
-    </SelectPrimitive.Root>
-  );
-};
+                <div className="flex items-center gap-2">
+                  {selectedItem?.icon}
+                  <span>{selectedItem?.label ?? "Select..."}</span>
+                </div>
+              </span>
+            </SelectPrimitive.Value>
+            <SelectPrimitive.Icon>
+              {hasError ? (
+                <HiExclamationCircle className="h-4 w-4 text-red-500" />
+              ) : (
+                <HiChevronUpDown className="h-4 w-4 text-neutral-200" />
+              )}
+            </SelectPrimitive.Icon>
+          </SelectPrimitive.Trigger>
+        </FormControl>
+        <SelectPrimitive.Portal>
+          <SelectPrimitive.Content className="z-30">
+            <SelectPrimitive.Viewport className="flex select-none flex-col gap-1 rounded bg-neutral-900 p-1 text-neutral-200">
+              {items.map((item, index) => (
+                <SelectPrimitive.Item
+                  key={`select-item-${item.value}-${index}`}
+                  className="flex h-10 items-center justify-between rounded px-2 text-sm outline-none hover:bg-white/5"
+                  value={item.value}
+                >
+                  <SelectPrimitive.ItemText>
+                    <div className="flex items-center gap-2">
+                      {item.icon}
+                      <span>{item.label}</span>
+                    </div>
+                  </SelectPrimitive.ItemText>
+                  <SelectPrimitive.ItemIndicator>
+                    <MdCheck className="h-4 w-4" />
+                  </SelectPrimitive.ItemIndicator>
+                </SelectPrimitive.Item>
+              ))}
+            </SelectPrimitive.Viewport>
+          </SelectPrimitive.Content>
+        </SelectPrimitive.Portal>
+      </SelectPrimitive.Root>
+    );
+  }
+);
+
+Select.displayName = "Select";

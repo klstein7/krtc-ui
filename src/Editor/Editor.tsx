@@ -1,3 +1,4 @@
+import type { PureEditorContent } from "@tiptap/react";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import type { FormControlProps } from "../FormControl";
@@ -25,104 +26,114 @@ export type EditorProps = {
   onChange?: (value: string) => void;
 } & Partial<FormControlProps>;
 
-export const Editor = ({
-  id = uuidv4(),
-  label,
-  description,
-  error,
-  fullWidth = true,
-  value = "",
-  onChange,
-}: EditorProps) => {
-  const hasError = !!error;
-
-  const [isFocused, setIsFocused] = useState(false);
-
-  const editor = useEditor({
-    extensions: [StarterKit, Underline],
-    content: value,
-    onFocus: () => setIsFocused(true),
-    onBlur: () => setIsFocused(false),
-    editorProps: {
-      attributes: {
-        class: clsx([
-          "prose prose-invert p-3 text-sm outline-none min-h-[150px] max-w-full leading-none",
-        ]),
-      },
+export const Editor = forwardRef<PureEditorContent, EditorProps>(
+  (
+    {
+      id = uuidv4(),
+      label,
+      description,
+      error,
+      fullWidth = true,
+      value = "",
+      onChange,
     },
-  });
+    ref
+  ) => {
+    const hasError = !!error;
 
-  editor?.on("update", () => {
-    onChange?.(editor?.getHTML() ?? "");
-  });
+    const [isFocused, setIsFocused] = useState(false);
 
-  return (
-    <FormControl
-      id={id}
-      label={label}
-      description={description}
-      error={error}
-      fullWidth={fullWidth}
-    >
-      <div className="rounded bg-white/5">
-        <div className="flex items-center gap-2">
-          <div className="flex gap-1 p-1">
-            <EditorActionButton
-              icon={<MdFormatBold className="h-4 w-4" />}
-              active={editor?.isActive("bold")}
-              onClick={() => editor?.chain().focus().toggleBold().run()}
-            />
-            <EditorActionButton
-              icon={<MdFormatItalic className="h-4 w-4" />}
-              active={editor?.isActive("italic")}
-              onClick={() => editor?.chain().focus().toggleItalic().run()}
-            />
-            <EditorActionButton
-              icon={<MdFormatUnderlined className="h-4 w-4" />}
-              active={editor?.isActive("underline")}
-              onClick={() => editor?.chain().focus().toggleUnderline().run()}
-            />
-            <EditorActionButton
-              icon={<MdFormatStrikethrough className="h-4 w-4" />}
-              active={editor?.isActive("strike")}
-              onClick={() => editor?.chain().focus().toggleStrike().run()}
-            />
-            <EditorActionButton
-              icon={<MdFormatQuote className="h-4 w-4" />}
-              active={editor?.isActive("blockquote")}
-              onClick={() => editor?.chain().focus().toggleBlockquote().run()}
-            />
-            <EditorActionButton
-              icon={<MdCode className="h-4 w-4" />}
-              active={editor?.isActive("codeBlock")}
-              onClick={() => editor?.chain().focus().toggleCodeBlock().run()}
-            />
+    const editor = useEditor({
+      extensions: [StarterKit, Underline],
+      content: value,
+      onFocus: () => setIsFocused(true),
+      onBlur: () => setIsFocused(false),
+      editorProps: {
+        attributes: {
+          class: clsx([
+            "prose prose-invert p-3 text-sm outline-none min-h-[150px] max-w-full leading-none",
+          ]),
+        },
+      },
+    });
+
+    editor?.on("update", () => {
+      onChange?.(editor?.getHTML() ?? "");
+    });
+
+    return (
+      <FormControl
+        id={id}
+        label={label}
+        description={description}
+        error={error}
+        fullWidth={fullWidth}
+      >
+        <div className="rounded bg-white/5">
+          <div className="flex items-center gap-2">
+            <div className="flex gap-1 p-1">
+              <EditorActionButton
+                icon={<MdFormatBold className="h-4 w-4" />}
+                active={editor?.isActive("bold")}
+                onClick={() => editor?.chain().focus().toggleBold().run()}
+              />
+              <EditorActionButton
+                icon={<MdFormatItalic className="h-4 w-4" />}
+                active={editor?.isActive("italic")}
+                onClick={() => editor?.chain().focus().toggleItalic().run()}
+              />
+              <EditorActionButton
+                icon={<MdFormatUnderlined className="h-4 w-4" />}
+                active={editor?.isActive("underline")}
+                onClick={() => editor?.chain().focus().toggleUnderline().run()}
+              />
+              <EditorActionButton
+                icon={<MdFormatStrikethrough className="h-4 w-4" />}
+                active={editor?.isActive("strike")}
+                onClick={() => editor?.chain().focus().toggleStrike().run()}
+              />
+              <EditorActionButton
+                icon={<MdFormatQuote className="h-4 w-4" />}
+                active={editor?.isActive("blockquote")}
+                onClick={() => editor?.chain().focus().toggleBlockquote().run()}
+              />
+              <EditorActionButton
+                icon={<MdCode className="h-4 w-4" />}
+                active={editor?.isActive("codeBlock")}
+                onClick={() => editor?.chain().focus().toggleCodeBlock().run()}
+              />
+            </div>
+            <div className="flex gap-1 p-1">
+              <EditorActionButton
+                icon={<MdFormatListBulleted className="h-4 w-4" />}
+                active={editor?.isActive("bulletList")}
+                onClick={() => editor?.chain().focus().toggleBulletList().run()}
+              />
+              <EditorActionButton
+                icon={<MdFormatListNumbered className="h-4 w-4" />}
+                active={editor?.isActive("orderedList")}
+                onClick={() =>
+                  editor?.chain().focus().toggleOrderedList().run()
+                }
+              />
+            </div>
           </div>
-          <div className="flex gap-1 p-1">
-            <EditorActionButton
-              icon={<MdFormatListBulleted className="h-4 w-4" />}
-              active={editor?.isActive("bulletList")}
-              onClick={() => editor?.chain().focus().toggleBulletList().run()}
-            />
-            <EditorActionButton
-              icon={<MdFormatListNumbered className="h-4 w-4" />}
-              active={editor?.isActive("orderedList")}
-              onClick={() => editor?.chain().focus().toggleOrderedList().run()}
-            />
-          </div>
+          <EditorContent
+            ref={ref}
+            editor={editor}
+            className={clsx([
+              "rounded-b",
+              isFocused && "ring-1 ring-blue-500",
+              hasError && "!ring-1 !ring-red-500",
+            ])}
+          />
         </div>
-        <EditorContent
-          editor={editor}
-          className={clsx([
-            "rounded-b",
-            isFocused && "ring-1 ring-blue-500",
-            hasError && "!ring-1 !ring-red-500",
-          ])}
-        />
-      </div>
-    </FormControl>
-  );
-};
+      </FormControl>
+    );
+  }
+);
+
+Editor.displayName = "Editor";
 
 type EditorActionButtonProps = {
   icon: React.ReactNode;
