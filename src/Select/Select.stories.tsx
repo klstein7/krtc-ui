@@ -22,6 +22,17 @@ export const Default: Story = {
   },
 };
 
+export const Clearable: Story = {
+  args: {
+    clearable: true,
+    items: [
+      { label: "Test", value: "1", icon: <HiHome /> },
+      { label: "Test 2", value: "2", icon: <HiEnvelope /> },
+      { label: "Test 3", value: "3", icon: <HiAcademicCap /> },
+    ],
+  },
+};
+
 export const WithReactHookForm = () => {
   const { control, getValues } = useForm<{ value: string }>();
 

@@ -1,11 +1,12 @@
 import * as SelectPrimitive from "@radix-ui/react-select";
 import { cva, cx } from "class-variance-authority";
-import { HiChevronUpDown, HiExclamationCircle } from "react-icons/hi2";
+import { HiChevronUpDown, HiExclamationCircle, HiXMark } from "react-icons/hi2";
 import { MdCheck } from "react-icons/md";
 import { v4 as uuidv4 } from "uuid";
 import { forwardRef, useState } from "react";
 import type { FormControlProps } from "../FormControl";
 import { FormControl } from "../FormControl";
+import { IconButton } from "../IconButton";
 
 export const select = cva(
   "flex h-10 w-full items-center justify-between rounded bg-white/5 px-3 text-white outline-none min-w-[250px] text-sm",
@@ -33,6 +34,7 @@ export type SelectItemProps = {
 export type SelectProps = {
   items: SelectItemProps[];
   value?: string;
+  clearable?: boolean;
   onChange?: (value: string) => void;
 } & Partial<FormControlProps>;
 
@@ -46,6 +48,7 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
       fullWidth = true,
       items,
       value: initialValue = "",
+      clearable,
       onChange,
     },
     ref
@@ -55,6 +58,20 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
     const [value, setValue] = useState(initialValue);
 
     const selectedItem = items.find((item) => item.value === value);
+
+    const renderRightIcon = () => {
+      if (hasError)
+        return <HiExclamationCircle className="h-4 w-4 text-red-400" />;
+      if (selectedItem && clearable)
+        return (
+          <HiXMark
+            aria-details="clear"
+            className="h-4 w-4 cursor-pointer text-neutral-200"
+            onClick={() => setValue("")}
+          />
+        );
+      return <HiChevronUpDown className="h-4 w-4 text-neutral-200" />;
+    };
 
     return (
       <SelectPrimitive.Root
@@ -71,35 +88,33 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
           error={error}
           fullWidth={fullWidth}
         >
-          <SelectPrimitive.Trigger
-            ref={ref}
-            id={id}
-            className={select({ hasError })}
-          >
-            <SelectPrimitive.Value asChild>
-              <span
-                className={cx(
-                  selectedItem
-                    ? hasError
-                      ? "text-red-400"
-                      : "text-neutral-200"
-                    : "text-neutral-500"
-                )}
-              >
-                <div className="flex items-center gap-2">
-                  {selectedItem?.icon}
-                  <span>{selectedItem?.label ?? "Select..."}</span>
-                </div>
-              </span>
-            </SelectPrimitive.Value>
-            <SelectPrimitive.Icon>
-              {hasError ? (
-                <HiExclamationCircle className="h-4 w-4 text-red-500" />
-              ) : (
-                <HiChevronUpDown className="h-4 w-4 text-neutral-200" />
-              )}
-            </SelectPrimitive.Icon>
-          </SelectPrimitive.Trigger>
+          <div className="relative">
+            <div className="absolute inset-y-0 right-0 z-20 flex items-center pr-3">
+              {renderRightIcon()}
+            </div>
+            <SelectPrimitive.Trigger
+              ref={ref}
+              id={id}
+              className={select({ hasError })}
+            >
+              <SelectPrimitive.Value asChild>
+                <span
+                  className={cx(
+                    selectedItem
+                      ? hasError
+                        ? "text-red-400"
+                        : "text-neutral-200"
+                      : "text-neutral-500"
+                  )}
+                >
+                  <div className="flex items-center gap-2">
+                    {selectedItem?.icon}
+                    <span>{selectedItem?.label ?? "Select..."}</span>
+                  </div>
+                </span>
+              </SelectPrimitive.Value>
+            </SelectPrimitive.Trigger>
+          </div>
         </FormControl>
         <SelectPrimitive.Portal>
           <SelectPrimitive.Content className="z-30">
