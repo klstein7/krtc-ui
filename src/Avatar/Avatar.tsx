@@ -1,11 +1,12 @@
 import * as AvatarPrimitive from "@radix-ui/react-avatar";
 import type { VariantProps } from "class-variance-authority";
 import { cva } from "class-variance-authority";
+import clsx from "clsx";
 import type { ComponentPropsWithoutRef } from "react";
 import { forwardRef } from "react";
 
 const avatar = cva(
-  "flex items-center justify-center text-blue-100 bg-blue-700 font-medium object-cover select-none",
+  "flex items-center justify-center font-medium object-cover select-none",
   {
     variants: {
       size: {
@@ -35,18 +36,17 @@ export type AvatarProps = {
 const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
   ({ src, alt, size, className, ...props }, ref) => {
     return (
-      <AvatarPrimitive.Root
-        ref={ref}
-        className={avatar({ size, className })}
-        {...props}
-      >
+      <AvatarPrimitive.Root ref={ref} {...props}>
         <AvatarPrimitive.Image
           src={src ?? undefined}
-          style={{
-            borderRadius: "inherit",
-          }}
+          className={avatar({ size, className })}
         />
-        <AvatarPrimitive.Fallback>
+        <AvatarPrimitive.Fallback
+          className={avatar({
+            size,
+            className: clsx([className, "bg-blue-700 text-white"]),
+          })}
+        >
           {alt?.charAt(0) ?? "U"}
         </AvatarPrimitive.Fallback>
       </AvatarPrimitive.Root>
