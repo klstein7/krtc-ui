@@ -27,7 +27,8 @@ const button = cva(
         true: "opacity-50 pointer-events-none",
       },
       size: {
-        sm: "px-2 py-1 text-xs rounded font-normal",
+        xs: "px-1.5 py-0.5 text-xs rounded font-normal",
+        sm: "px-3 py-1.5 text-xs rounded font-normal",
         md: "px-4 py-2 text-sm rounded-md font-medium",
         lg: "px-5 py-3 text-base rounded-md font-semibold",
       },

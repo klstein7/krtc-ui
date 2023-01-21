@@ -35,14 +35,17 @@ export const Default: Story = {
 export const Size: Story = {
   render: (args) => (
     <div className="flex flex-col gap-4">
+      <Button {...args} color="blue" size="xs">
+        xs
+      </Button>
       <Button {...args} color="blue" size="sm">
-        Small
+        sm
       </Button>
       <Button {...args} color="blue">
-        Medium
+        md
       </Button>
       <Button {...args} color="blue" size="lg">
-        Large
+        lg
       </Button>
     </div>
   ),
