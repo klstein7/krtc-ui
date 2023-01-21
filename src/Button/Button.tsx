@@ -8,7 +8,7 @@ import Ripples from "react-ripples";
 import { ClipLoader } from "react-spinners";
 
 const button = cva(
-  "inline-flex items-center justify-center font-medium rounded-md gap-2 select-none w-full",
+  "inline-flex items-center justify-center gap-2 select-none w-full",
   {
     variants: {
       variant: {
@@ -27,9 +27,9 @@ const button = cva(
         true: "opacity-50 pointer-events-none",
       },
       size: {
-        sm: "px-3 py-1 text-xs",
-        md: "px-4 py-2 text-sm",
-        lg: "px-5 py-3 text-base",
+        sm: "px-2 py-1 text-xs rounded font-normal",
+        md: "px-4 py-2 text-sm rounded-md font-medium",
+        lg: "px-5 py-3 text-base rounded-md font-semibold",
       },
     },
     compoundVariants: [

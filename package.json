@@ -1,6 +1,6 @@
 {
   "name": "krtc-ui",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "private": false,
   "scripts": {
     "build": "tsup ./src/index.ts --dts --clean --format cjs,esm --external react,react-dom,react-ripples,framer-motion,react-spinners,uuid,@radix-ui/react-avatar,@radix-ui/react-dialog,@radix-ui/react-dropdown-menu,@radix-ui/react-label,@radix-ui/react-select,@radix-ui/react-tooltip,@ebay/nice-modal-react, class-variance-authority",

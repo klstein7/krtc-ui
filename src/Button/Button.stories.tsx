@@ -32,6 +32,22 @@ export const Default: Story = {
   ),
 };
 
+export const Size: Story = {
+  render: (args) => (
+    <div className="flex flex-col gap-4">
+      <Button {...args} color="blue" size="sm">
+        Small
+      </Button>
+      <Button {...args} color="blue">
+        Medium
+      </Button>
+      <Button {...args} color="blue" size="lg">
+        Large
+      </Button>
+    </div>
+  ),
+};
+
 export const Outline: Story = {
   args: {
     children: "Click me",
