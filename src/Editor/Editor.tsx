@@ -5,7 +5,7 @@ import type { FormControlProps } from "../FormControl";
 import { FormControl } from "../FormControl";
 import { v4 as uuidv4 } from "uuid";
 import clsx from "clsx";
-import { forwardRef, useState } from "react";
+import { forwardRef, useEffect, useState } from "react";
 import { IconButton } from "../IconButton";
 import {
   MdCode,
@@ -24,6 +24,7 @@ export type EditorProps = {
   id?: string;
   value?: string;
   onChange?: (value: string) => void;
+  onBlur?: () => void;
 } & Partial<FormControlProps>;
 
 export const Editor = forwardRef<PureEditorContent, EditorProps>(
@@ -36,6 +37,7 @@ export const Editor = forwardRef<PureEditorContent, EditorProps>(
       fullWidth = true,
       value = "",
       onChange,
+      onBlur,
     },
     ref
   ) => {
@@ -47,7 +49,13 @@ export const Editor = forwardRef<PureEditorContent, EditorProps>(
       extensions: [StarterKit, Underline],
       content: value,
       onFocus: () => setIsFocused(true),
-      onBlur: () => setIsFocused(false),
+      onBlur: () => {
+        setIsFocused(false);
+      },
+      onUpdate: ({ editor }) => {
+        onChange?.(editor.getHTML());
+        onBlur?.();
+      },
       editorProps: {
         attributes: {
           class: clsx([
@@ -55,10 +63,6 @@ export const Editor = forwardRef<PureEditorContent, EditorProps>(
           ]),
         },
       },
-    });
-
-    editor?.on("update", () => {
-      onChange?.(editor?.getHTML() ?? "");
     });
 
     return (

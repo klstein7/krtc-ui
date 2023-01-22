@@ -3,7 +3,7 @@ import { cva, cx } from "class-variance-authority";
 import { HiChevronUpDown, HiExclamationCircle, HiXMark } from "react-icons/hi2";
 import { MdCheck } from "react-icons/md";
 import { v4 as uuidv4 } from "uuid";
-import { forwardRef, useState } from "react";
+import { forwardRef, useEffect, useState } from "react";
 import type { FormControlProps } from "../FormControl";
 import { FormControl } from "../FormControl";
 
@@ -35,6 +35,7 @@ export type SelectProps = {
   value?: string | null;
   clearable?: boolean;
   onChange?: (value: string) => void;
+  onBlur?: () => void;
 } & Partial<FormControlProps>;
 
 export const Select = forwardRef<HTMLButtonElement, SelectProps>(
@@ -49,12 +50,14 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
       value: initialValue = "",
       clearable,
       onChange,
+      onBlur,
     },
     ref
   ) => {
     const hasError = !!error;
 
     const [value, setValue] = useState(initialValue);
+    const [open, setOpen] = useState(false);
 
     const selectedItem = items.find((item) => item.value === value);
 
@@ -75,6 +78,8 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
     return (
       <SelectPrimitive.Root
         value={value ?? ""}
+        open={open}
+        onOpenChange={setOpen}
         onValueChange={(v) => {
           setValue(v);
           onChange?.(v);
@@ -95,6 +100,11 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
               ref={ref}
               id={id}
               className={select({ hasError })}
+              onBlur={() => {
+                if (!open) {
+                  onBlur?.();
+                }
+              }}
             >
               <SelectPrimitive.Value asChild>
                 <span
@@ -116,7 +126,7 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
           </div>
         </FormControl>
         <SelectPrimitive.Portal>
-          <SelectPrimitive.Content className="z-30">
+          <SelectPrimitive.Content open className="z-30">
             <SelectPrimitive.Viewport className="flex select-none flex-col gap-1 rounded bg-neutral-900 p-1 text-neutral-200">
               {items.map((item, index) => (
                 <SelectPrimitive.Item
