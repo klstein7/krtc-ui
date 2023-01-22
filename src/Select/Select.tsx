@@ -126,7 +126,7 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
           </div>
         </FormControl>
         <SelectPrimitive.Portal>
-          <SelectPrimitive.Content open className="z-30">
+          <SelectPrimitive.Content className="z-30">
             <SelectPrimitive.Viewport className="flex select-none flex-col gap-1 rounded bg-neutral-900 p-1 text-neutral-200">
               {items.map((item, index) => (
                 <SelectPrimitive.Item
