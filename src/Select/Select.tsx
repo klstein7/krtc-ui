@@ -6,7 +6,6 @@ import { v4 as uuidv4 } from "uuid";
 import { forwardRef, useState } from "react";
 import type { FormControlProps } from "../FormControl";
 import { FormControl } from "../FormControl";
-import { IconButton } from "../IconButton";
 
 export const select = cva(
   "flex h-10 w-full items-center justify-between rounded bg-white/5 px-3 text-white outline-none min-w-[250px] text-sm",
@@ -33,7 +32,7 @@ export type SelectItemProps = {
 
 export type SelectProps = {
   items: SelectItemProps[];
-  value?: string;
+  value?: string | null;
   clearable?: boolean;
   onChange?: (value: string) => void;
 } & Partial<FormControlProps>;
@@ -75,7 +74,7 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
 
     return (
       <SelectPrimitive.Root
-        value={value}
+        value={value ?? ""}
         onValueChange={(v) => {
           setValue(v);
           onChange?.(v);
