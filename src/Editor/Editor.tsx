@@ -51,10 +51,10 @@ export const Editor = forwardRef<PureEditorContent, EditorProps>(
       onFocus: () => setIsFocused(true),
       onBlur: () => {
         setIsFocused(false);
+        onBlur?.();
       },
       onUpdate: ({ editor }) => {
         onChange?.(editor.getHTML());
-        onBlur?.();
       },
       editorProps: {
         attributes: {
