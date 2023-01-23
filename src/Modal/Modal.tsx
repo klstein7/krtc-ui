@@ -93,32 +93,34 @@ export const Modal = NiceModal.create(
                   <DialogPrimitive.Content
                     className={modal({ size, className: classNames?.content })}
                   >
-                    <div className="flex items-start justify-between">
-                      {(title || description) && (
-                        <div>
-                          {title && (
-                            <DialogPrimitive.Title className="font-medium">
-                              {title}
-                            </DialogPrimitive.Title>
-                          )}
-                          {description && (
-                            <DialogPrimitive.Description className="text-sm text-neutral-400">
-                              {description}
-                            </DialogPrimitive.Description>
-                          )}
-                        </div>
-                      )}
-                      {withCloseButton && (
-                        <DialogPrimitive.Close asChild>
-                          <IconButton
-                            icon={<MdClose className="h-4 w-4" />}
-                            onClick={() => {
-                              hide().catch(console.error);
-                            }}
-                          />
-                        </DialogPrimitive.Close>
-                      )}
-                    </div>
+                    {(title || description) && withCloseButton && (
+                      <div className="flex items-start justify-between">
+                        {(title || description) && (
+                          <div>
+                            {title && (
+                              <DialogPrimitive.Title className="font-medium">
+                                {title}
+                              </DialogPrimitive.Title>
+                            )}
+                            {description && (
+                              <DialogPrimitive.Description className="text-sm text-neutral-400">
+                                {description}
+                              </DialogPrimitive.Description>
+                            )}
+                          </div>
+                        )}
+                        {withCloseButton && (
+                          <DialogPrimitive.Close asChild>
+                            <IconButton
+                              icon={<MdClose className="h-4 w-4" />}
+                              onClick={() => {
+                                hide().catch(console.error);
+                              }}
+                            />
+                          </DialogPrimitive.Close>
+                        )}
+                      </div>
+                    )}
                     {children}
                   </DialogPrimitive.Content>
                 </motion.div>
