@@ -94,14 +94,20 @@ export const Modal = NiceModal.create(
                     className={modal({ size, className: classNames?.content })}
                   >
                     <div className="flex items-start justify-between">
-                      <div>
-                        <DialogPrimitive.Title className="font-medium">
-                          {title}
-                        </DialogPrimitive.Title>
-                        <DialogPrimitive.Description className="text-sm text-neutral-400">
-                          {description}
-                        </DialogPrimitive.Description>
-                      </div>
+                      {(title || description) && (
+                        <div>
+                          {title && (
+                            <DialogPrimitive.Title className="font-medium">
+                              {title}
+                            </DialogPrimitive.Title>
+                          )}
+                          {description && (
+                            <DialogPrimitive.Description className="text-sm text-neutral-400">
+                              {description}
+                            </DialogPrimitive.Description>
+                          )}
+                        </div>
+                      )}
                       {withCloseButton && (
                         <DialogPrimitive.Close asChild>
                           <IconButton
