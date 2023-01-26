@@ -69,7 +69,10 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
           <HiXMark
             aria-details="clear"
             className="h-4 w-4 cursor-pointer text-neutral-200"
-            onClick={() => setValue("")}
+            onClick={() => {
+              setValue("");
+              onChange?.("");
+            }}
           />
         );
       return <HiChevronUpDown className="h-4 w-4 text-neutral-200" />;

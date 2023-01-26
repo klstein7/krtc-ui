@@ -7,7 +7,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { MdClose } from "react-icons/md";
 import { IconButton } from "../IconButton";
 
-const modal = cva(
+export const modal = cva(
   "flex flex-col gap-4 rounded-md bg-neutral-800 p-4 text-neutral-200 w-full z-20",
   {
     variants: {
@@ -31,24 +31,27 @@ const modal = cva(
   }
 );
 
-const overlay = cva("fixed inset-0 flex !overflow-auto bg-black/80 p-2 z-10", {
-  variants: {
-    align: {
-      start: "items-start",
-      center: "items-center ",
-      end: "items-end",
+export const overlay = cva(
+  "fixed inset-0 flex !overflow-auto bg-black/80 p-2 z-10",
+  {
+    variants: {
+      align: {
+        start: "items-start",
+        center: "items-center ",
+        end: "items-end",
+      },
+      justify: {
+        start: "justify-start",
+        center: "justify-center",
+        end: "justify-end",
+      },
     },
-    justify: {
-      start: "justify-start",
-      center: "justify-center",
-      end: "justify-end",
+    defaultVariants: {
+      align: "start",
+      justify: "center",
     },
-  },
-  defaultVariants: {
-    align: "start",
-    justify: "center",
-  },
-});
+  }
+);
 
 export type ModalProps = {
   title?: string;

@@ -157,7 +157,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <Ripples
         className={cx("inline-flex", fullWidth ? "w-full" : "w-fit")}
-        color={loading || disabled ? "transparent" : "rgba(0, 0, 0, 0.075)"}
+        color={loading || disabled ? "transparent" : "rgba(0, 0, 0, 0.05)"}
         during={1200}
       >
         <motion.button
